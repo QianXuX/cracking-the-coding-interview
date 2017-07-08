@@ -10,17 +10,18 @@ Multi-line comments look like this.
  * attributes of a Class.
  * Main attributes:
  *
- * @author         Name (and contact information such as email) of author(s).
- * @version     Current version of the program.
- * @since        When this part of the program was first added.
- * @param         For describing the different parameters for a method.
- * @return        For describing what the method returns.
- * @deprecated  For showing the code is outdated or shouldn't be used.
- * @see         Links to another part of documentation.
-*/
+ * @author Name (and contact information such as email) of author(s).
+ * @version Current version of the program.
+ * @param For describing the different parameters for a method.
+ * @return For describing what the method returns.
+ * @see Links to another part of documentation.
+ * @since When this part of the program was first added.
+ * @deprecated For showing the code is outdated or shouldn't be used.
+ */
 
 package LanguageBasics;
 // Import ArrayList class inside of the java.util package
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.math.BigDecimal;
@@ -28,7 +29,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 // Import all classes inside of java.security package
 import java.security.*;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 // Each .java file contains one outer-level public class, with the same name
 // as the file.
@@ -36,11 +39,11 @@ public class LearnJava {
 
     // In order to run a java program, it must have a main method as an entry 
     // point.
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
-    ///////////////////////////////////////
-    // Input/Output
-    ///////////////////////////////////////
+        ///////////////////////////////////////
+        // Input/Output
+        ///////////////////////////////////////
 
         /*
         * Ouput
@@ -48,10 +51,11 @@ public class LearnJava {
 
         // Use System.out.println() to print lines.
         System.out.println("Hello World!");
+        // How Java concatenate string with pieces
         System.out.println(
-            "Integer: " + 10 +
-            " Double: " + 3.14 +
-            " Boolean: " + true);
+                "Integer: " + 10 +
+                        " Double: " + 3.14 +
+                        " Boolean: " + true);
 
         // To print without a newline, use System.out.print().
         System.out.print("Hello ");
@@ -86,6 +90,11 @@ public class LearnJava {
         // read boolean input
         boolean bool = scanner.nextBoolean();
 
+        //language=JSON
+        //String json = "{\"key\": \"value\"}";
+        //BufferedReader reader = new BufferedReader(new FileReader("abc.txt"));
+        //String s = reader.readLine();
+
         ///////////////////////////////////////
         // Variables
         ///////////////////////////////////////
@@ -116,7 +125,7 @@ public class LearnJava {
         // Byte - 8-bit signed two's complement integer
         // (-128 <= byte <= 127)
         byte fooByte = 100;
-        
+
         // If you would like to interpret a byte as an unsigned integer
         // then this simple operation can help
         int unsignedIntLessThan256 = 0xff & fooByte;
@@ -170,7 +179,8 @@ public class LearnJava {
         // integers longer than 64-bits. Integers are stored as an array of
         // of bytes and are manipulated using functions built into BigInteger
         //
-        // BigInteger can be initialized using an array of bytes or a string.        
+        // BigInteger can be initialized using an array of bytes or a string.
+        byte[] fooByteArray = {1, 2, 3, 1, 2, 3};
         BigInteger fooBigInteger = new BigInteger(fooByteArray);
 
         // BigDecimal - Immutable, arbitrary-precision signed decimal number
@@ -184,8 +194,9 @@ public class LearnJava {
         //
         // BigDecimal can be initialized with an int, long, double or String
         // or by initializing the unscaled value (BigInteger) and scale (int).
+        fooInt = 1;
         BigDecimal fooBigDecimal = new BigDecimal(fooBigInteger, fooInt);
-        
+
         // Be wary of the constructor that takes a float or double as
         // the inaccuracy of the float/double will be copied in BigDecimal.
         // Prefer the String constructor when you need an exact value.
@@ -219,11 +230,11 @@ public class LearnJava {
         builderConcatenated.append("the StringBuilder class.");
         System.out.println(builderConcatenated.toString()); // only now is the string built 
         // Output: You can use the StringBuilder class.
-        
+
         // StringBuilder is efficient when the fully constructed String is not required until the end of some processing.
         StringBuilder stringBuilder = new StringBuilder();
         String inefficientString = "";
-        for(int i = 0 ; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             stringBuilder.append(i).append(" ");
             inefficientString += i + " ";
         }
@@ -232,12 +243,12 @@ public class LearnJava {
         // inefficientString requires a lot more work to produce, as it generates a String on every loop iteration.
         // Simple concatenation with + is compiled to a StringBuilder and toString()
         // Avoid string concatenation in loops.
-        
+
         // #3 - with String formatter
         // Another alternative way to create strings. Fast and readable.
         String.format("%s may prefer %s.", "Or you", "String.format()");
         // Output: Or you may prefer String.format().
- 
+
         // Arrays
         // The array size must be decided upon instantiation
         // The following formats work for declaring an array
@@ -291,10 +302,10 @@ public class LearnJava {
         System.out.println("2-1 = " + (i2 - i1)); // => 1
         System.out.println("2*1 = " + (i2 * i1)); // => 2
         System.out.println("1/2 = " + (i1 / i2)); // => 0 (int/int returns int)
-        System.out.println("1/2 = " + (i1 / (double)i2)); // => 0.5
+        System.out.println("1/2 = " + (i1 / (double) i2)); // => 0.5
 
         // Modulo
-        System.out.println("11%3 = "+(11 % 3)); // => 2
+        System.out.println("11%3 = " + (11 % 3)); // => 2
 
         // Comparison operators
         System.out.println("3 == 2? " + (3 == 2)); // => false
@@ -348,7 +359,7 @@ public class LearnJava {
 
         // While loop
         int fooWhile = 0;
-        while(fooWhile < 100) {
+        while (fooWhile < 100) {
             System.out.println(fooWhile);
             // Increment the counter
             // Iterated 100 times, fooWhile 0,1,2...99
@@ -363,28 +374,29 @@ public class LearnJava {
             // Increment the counter
             // Iterated 99 times, fooDoWhile 0->99
             fooDoWhile++;
-        } while(fooDoWhile < 100);
+        } while (fooDoWhile < 100);
         System.out.println("fooDoWhile Value: " + fooDoWhile);
 
         // For Loop
+        int fooFor = 0;
         // for loop structure => for(<start_statement>; <conditional>; <step>)
-        for (int fooFor = 0; fooFor < 10; fooFor++) {
+        for (; fooFor < 10; fooFor++) {
             System.out.println(fooFor);
             // Iterated 10 times, fooFor 0->9
         }
         System.out.println("fooFor Value: " + fooFor);
-        
+
         // Nested For Loop Exit with Label
         outer:
-        for (int i = 0; i < 10; i++) {
-          for (int j = 0; j < 10; j++) {
-            if (i == 5 && j ==5) {
-              break outer;
-              // breaks out of outer loop instead of only the inner one
+        for (int ii = 0; ii < 10; ii++) {
+            for (int jj = 0; jj < 10; jj++) {
+                if (ii == 5 && jj == 5) {
+                    break outer;
+                    // breaks out of outer loop instead of only the inner one
+                }
             }
-          }
         }
-        
+
         // For Each Loop
         // The for loop is also able to iterate over arrays as well as objects
         // that implement the Iterable interface.
@@ -405,20 +417,24 @@ public class LearnJava {
         int month = 3;
         String monthString;
         switch (month) {
-            case 1: monthString = "January";
-                    break;
-            case 2: monthString = "February";
-                    break;
-            case 3: monthString = "March";
-                    break;
-            default: monthString = "Some other month";
-                     break;
+            case 1:
+                monthString = "January";
+                break;
+            case 2:
+                monthString = "February";
+                break;
+            case 3:
+                monthString = "March";
+                break;
+            default:
+                monthString = "Some other month";
+                break;
         }
         System.out.println("Switch Case Result: " + monthString);
-        
+
         // Starting in Java 7 and above, switching Strings works like this:
         String myAnswer = "maybe";
-        switch(myAnswer) {
+        switch (myAnswer) {
             case "yes":
                 System.out.println("You answered yes.");
                 break;
@@ -432,17 +448,17 @@ public class LearnJava {
                 System.out.println("You answered " + myAnswer);
                 break;
         }
-        
-        
+
+
         // Try-with-resources (Java 7+)
         // Try-catch-finally statements work as expected in Java but in Java 7+
         // the try-with-resources statement is also available. Try-with-resources
         // simplifies try-catch-finally statements by closing resources
         // automatically.
-        
+
         // In order to use a try-with-resources, include a an instance of a class
         // in the try statement. The class must implement java.lang.AutoCloseable.
-        try(BufferedReader br = new BufferedReader(new FileReader("foo.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("foo.txt"))) {
             // You can attempt to do something that could throw an exception.
             System.out.println(br.readLine());
             // In Java 7, the resource will always be closed, even if it throws
@@ -456,8 +472,8 @@ public class LearnJava {
         // a finally statement might not be called.
         // To learn more:
         // https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
-        
-        
+
+
         // Conditional Shorthand
         // You can use the '?' operator for quick assignments or logic forks.
         // Reads as "If (statement) is true, use <first value>, otherwise, use
@@ -509,21 +525,21 @@ public class LearnJava {
         // Double Brace Initialization
         // The Java Language has no syntax for how to create static Collections
         // in an easy way. Usually you end up in the following way:
-        private static final Set<String> COUNTRIES = new HashSet<String>();
-        static {
-           COUNTRIES.add("DENMARK");
-           COUNTRIES.add("SWEDEN");
-           COUNTRIES.add("FINLAND");
-        }
+//        private static final Set<String> COUNTRIES = new HashSet<String>();
+//        static {
+//            COUNTRIES.add("DENMARK");
+//            COUNTRIES.add("SWEDEN");
+//            COUNTRIES.add("FINLAND");
+//        }
 
         // But there's a nifty way to achieve the same thing in an
         // easier way, by using something that is called Double Brace
         // Initialization.
-        private static final Set<String> COUNTRIES = new HashSet<String>() {{
-            add("DENMARK");
-            add("SWEDEN");
-            add("FINLAND");
-        }}
+//        private static final Set<String> COUNTRIES = new HashSet<String>() {{
+//            add("DENMARK");
+//            add("SWEDEN");
+//            add("FINLAND");
+//        }}
 
         // The first brace is creating a new AnonymousInnerClass and the
         // second one declares an instance initializer block. This block
@@ -543,100 +559,9 @@ public class LearnJava {
 //    // functions are called as methods in Java.
 // }
 
-class Bicycle {
-
-    // Bicycle's Fields/Variables
-    public int cadence; // Public: Can be accessed from anywhere
-    private int speed;  // Private: Only accessible from within the class
-    protected int gear; // Protected: Accessible from the class and subclasses
-    String name; // default: Only accessible from within this package
-    static String className; // Static class variable
-
-    // Static block 
-    // Java has no implementation of static constructors, but
-    // has a static block that can be used to initialize class variables 
-    // (static variables). 
-    // This block will be called when the class is loaded.
-    static {
-        className = "Bicycle";
-    }
-
-    // Constructors are a way of creating classes
-    // This is a constructor
-    public Bicycle() {
-        // You can also call another constructor:
-        // this(1, 50, 5, "Bontrager");
-        gear = 1;
-        cadence = 50;
-        speed = 5;
-        name = "Bontrager";
-    }
-    // This is a constructor that takes arguments
-    public Bicycle(int startCadence, int startSpeed, int startGear,
-        String name) {
-        this.gear = startGear;
-        this.cadence = startCadence;
-        this.speed = startSpeed;
-        this.name = name;
-    }
-
-    // Method Syntax:
-    // <public/private/protected> <return type> <function name>(<args>)
-
-    // Java classes often implement getters and setters for their fields
-
-    // Method declaration syntax:
-    // <access modifier> <return type> <method name>(<args>)
-    public int getCadence() {
-        return cadence;
-    }
-
-    // void methods require no return statement
-    public void setCadence(int newValue) {
-        cadence = newValue;
-    }
-    public void setGear(int newValue) {
-        gear = newValue;
-    }
-    public void speedUp(int increment) {
-        speed += increment;
-    }
-    public void slowDown(int decrement) {
-        speed -= decrement;
-    }
-    public void setName(String newName) {
-        name = newName;
-    }
-    public String getName() {
-        return name;
-    }
-
-    //Method to display the attribute values of this Object.
-    @Override // Inherited from the Object class.
-    public String toString() {
-        return "gear: " + gear + " cadence: " + cadence + " speed: " + speed +
-            " name: " + name;
-    }
-} // end class Bicycle
 
 // PennyFarthing is a subclass of Bicycle
-class PennyFarthing extends Bicycle {
-    // (Penny Farthings are those bicycles with the big front wheel.
-    // They have no gears.)
 
-    public PennyFarthing(int startCadence, int startSpeed) {
-        // Call the parent constructor with super
-        super(startCadence, startSpeed, 0, "PennyFarthing");
-    }
-
-    // You should mark a method you're overriding with an @annotation.
-    // To learn more about what annotations are and their purpose check this
-    // out: http://docs.oracle.com/javase/tutorial/java/annotations/
-    @Override
-    public void setGear(int gear) {
-        this.gear = 0;
-    }
-}
 
 // Interfaces
 // Interface declaration syntax
@@ -646,45 +571,24 @@ class PennyFarthing extends Bicycle {
 // }
 
 // Example - Food:
-public interface Edible {
-    public void eat(); // Any class that implements this interface, must
-                       // implement this method.
-}
 
-public interface Digestible {
-    public void digest();
-    // In Java 8, interfaces can have default method.
-    // public void digest() {
-    //     System.out.println("digesting ...");
-    // }
-}
+// <Interface> Edible
+// <Interface> Digetible
 
-// We can now create a class that implements both of these interfaces.
-public class Fruit implements Edible, Digestible {
-    @Override
-    public void eat() {
-        // ...
-    }
-
-    @Override
-    public void digest() {
-        // ...
-    }
-}
 
 // In Java, you can extend only one class, but you can implement many
 // interfaces. For example:
-public class ExampleClass extends ExampleClassParent implements InterfaceOne,
-    InterfaceTwo {
-    @Override
-    public void InterfaceOneMethod() {
-    }
-
-    @Override
-    public void InterfaceTwoMethod() {
-    }
-
-}
+//public class ExampleClass extends ExampleClassParent implements InterfaceOne,
+//    InterfaceTwo {
+//    @Override
+//    public void InterfaceOneMethod() {
+//    }
+//
+//    @Override
+//    public void InterfaceTwoMethod() {
+//    }
+//
+//}
 
 // Abstract Classes
 
@@ -694,66 +598,6 @@ public class ExampleClass extends ExampleClassParent implements InterfaceOne,
 //     // Method declarations
 // }
 
-// Marking a class as abstract means that it contains abstract methods that
-// must be defined in a child class. Similar to interfaces, abstract classes
-// cannot be instantiated, but instead must be extended and the abstract
-// methods defined. Different from interfaces, abstract classes can contain a
-// mixture of concrete and abstract methods. Methods in an interface cannot
-// have a body, unless the method is static, and variables are final by default,
-// unlike an abstract class. Also abstract classes CAN have the "main" method.
-public abstract class Animal
-{
-    public abstract void makeSound();
-
-    // Method can have a body
-    public void eat()
-    {
-        System.out.println("I am an animal and I am Eating.");
-        // Note: We can access private variable here.
-        age = 30;
-    }
-
-    // No need to initialize, however in an interface
-    // a variable is implicitly final and hence has
-    // to be initialized.
-    private int age;
-
-    public void printAge()
-    {
-        System.out.println(age);  
-    }
-
-    // Abstract classes can have main function.
-    public static void main(String[] args)
-    {
-        System.out.println("I am abstract");
-    }
-}
-
-class Dog extends Animal
-{
-    // Note still have to override the abstract methods in the
-    // abstract class.
-    @Override
-    public void makeSound()
-    {
-        System.out.println("Bark");
-        // age = 30;    ==> ERROR!    age is private to Animal
-    }
-
-    // NOTE: You will get an error if you used the
-    // @Override annotation here, since java doesn't allow
-    // overriding of static methods.
-    // What is happening here is called METHOD HIDING.
-    // Check out this SO post: http://stackoverflow.com/questions/16313649/
-    public static void main(String[] args)
-    {
-        Dog pluto = new Dog();
-        pluto.makeSound();
-        pluto.eat();
-        pluto.printAge();
-    }
-}
 
 // Final Classes
 
@@ -763,82 +607,7 @@ class Dog extends Animal
 //     // Method declarations
 // }
 
-// Final classes are classes that cannot be inherited from and are therefore a
-// final child. In a way, final classes are the opposite of abstract classes
-// because abstract classes must be extended, but final classes cannot be
-// extended.
-public final class SaberToothedCat extends Animal
-{
-    // Note still have to override the abstract methods in the
-    // abstract class.
-    @Override
-    public void makeSound()
-    {
-        System.out.println("Roar");
-    }
-}
 
-// Final Methods
-public abstract class Mammal()
-{
-    // Final Method Syntax:
-    // <access modifier> final <return type> <function name>(<args>)
-
-    // Final methods, like, final classes cannot be overridden by a child
-    // class, and are therefore the final implementation of the method.
-    public final boolean isWarmBlooded()
-    {
-        return true;
-    }
-}
-
-// Enum Type
-//
-// An enum type is a special data type that enables for a variable to be a set
-// of predefined constants. The variable must be equal to one of the values
-// that have been predefined for it. Because they are constants, the names of
-// an enum type's fields are in uppercase letters. In the Java programming
-// language, you define an enum type by using the enum keyword. For example,
-// you would specify a days-of-the-week enum type as:
-public enum Day {
-    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-    THURSDAY, FRIDAY, SATURDAY 
-}
-
-// We can use our enum Day like that:
-public class EnumTest {
-    // Variable Enum
-    Day day;
-    
-    public EnumTest(Day day) {
-        this.day = day;
-    }
-    
-    public void tellItLikeItIs() {
-        switch (day) {
-            case MONDAY:
-                System.out.println("Mondays are bad.");
-                break;
-            case FRIDAY:
-                System.out.println("Fridays are better.");
-                break;   
-            case SATURDAY: 
-            case SUNDAY:
-                System.out.println("Weekends are best.");
-                break;     
-            default:
-                System.out.println("Midweek days are so-so.");
-                break;
-        }
-    }
-    
-    public static void main(String[] args) {
-        EnumTest firstDay = new EnumTest(Day.MONDAY);
-        firstDay.tellItLikeItIs(); // => Mondays are bad.
-        EnumTest thirdDay = new EnumTest(Day.WEDNESDAY);
-        thirdDay.tellItLikeItIs(); // => Midweek days are so-so.
-    }
-}
 
 // Enum types are much more powerful than we show above. 
 // The enum body can include methods and other fields.
